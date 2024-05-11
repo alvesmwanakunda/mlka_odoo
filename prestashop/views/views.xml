@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+
+    <!-- Définition de la vue -->
+        <record id="view_prestashop_product_form" model="ir.ui.view">
+            <field name="name">Prestashop Import Product</field>
+            <field name="model">prestashop.prestashop</field>
+             <field name="arch" type="xml">
+                <form create="false">
+                    <header>
+                        <button name="import_products_from_prestashop" string="Importe les produits" type="object"  class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="description" readonly="1"/>
+                            <field name="price" readonly="1"/>
+                            <field name="reference" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_prestashop_product_tree" model="ir.ui.view">
+            <field name="name">Produits</field>
+            <field name="model">prestashop.prestashop</field>
+            <field name="arch" type="xml">
+                <tree  sample="1" multi_edit="1">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="price"/>
+                    <field name="reference"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_prestashop_product_form" model="ir.actions.act_window">
+            <field name="name">Prestashop Import Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prestashop.prestashop</field>
+            <field name="view_mode">form</field>
+        </record>
+        <!-- Définition de l'action pour accéder à la vue -->
+        <record id="action_prestashop_product_tree" model="ir.actions.act_window">
+            <field name="name">Produits</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prestashop.prestashop</field>
+            <field name="view_mode">tree</field>
+            <!-- Masquer le bouton "Créer" (Nouveau) -->
+            <field name="context">{'create': False}</field>
+        </record>
+
+
+        <!-- Définition du menu pour accéder à l'action -->
+        <menuitem id="menu_prestashop_products"  name="Prestashop" groups="base.group_user" web_icon="prestashop,static/description/icon.png"/>
+        <menuitem id="menu_prestashop_products_form" name="Importe les produits" parent="menu_prestashop_products" action="action_prestashop_product_form"/>
+        <menuitem id="menu_prestashop_products_tree" name="Produits" parent="menu_prestashop_products" action="action_prestashop_product_tree"/>
+  </data>
+</odoo>
