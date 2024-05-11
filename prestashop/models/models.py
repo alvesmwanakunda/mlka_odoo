@@ -23,9 +23,9 @@ class prestashop(models.Model):
 
     def import_products_from_prestashop(self):
         # Méthode pour récupérer et importer les produits depuis Prestashop
-        prestashop_url = 'https://mlka-market.com/api/products/?display=[id,price,name,description_short,reference]'
+        prestashop_url = 'https://YOUR_URL/api/products/?display=[id,price,name,description_short,reference]'
         params = {
-            'ws_key': 'CJ4HF5A7PHNNUHI243YCZR71V1VCM5UF',
+            'ws_key': 'YOUR_KEY_API',
             'output_format': 'JSON'
         }
         try:
